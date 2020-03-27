@@ -1,0 +1,276 @@
+import 'package:fitness_training/goals.dart';
+import 'package:flutter/material.dart';
+import 'main.dart';
+
+class Medical extends StatefulWidget {
+  @override
+  _MedicalState createState() => _MedicalState();
+}
+
+class _MedicalState extends State<Medical> {
+  //stress
+  int radiovalue = 2;
+  int actValue;
+  void changeid(int value) {
+    setState(() {
+      radiovalue = value;
+      switch (radiovalue) {
+        case 1:
+          actValue = radiovalue;
+          break;
+        case 2:
+          actValue = radiovalue;
+          break;
+      }
+    });
+  }
+
+  //disease
+  int radiodisease = 2;
+  int actdisease;
+  void changeiddisease(int value) {
+    setState(() {
+      radiodisease = value;
+      switch (radiodisease) {
+        case 1:
+          actdisease = radiodisease;
+          break;
+        case 2:
+          actdisease = radiodisease;
+          break;
+      }
+    });
+  }
+
+  //ciggrate
+  int radiocig = 2;
+  int actcig;
+  void changeCig(int value) {
+    setState(() {
+      radiocig = value;
+      switch (radiocig) {
+        case 1:
+          actcig = radiocig;
+          break;
+        case 2:
+          actcig = radiocig;
+          break;
+      }
+    });
+  }
+
+  //diet
+  int radiodiet = 4;
+  int actdiet;
+  void changeDiet(int value) {
+    setState(() {
+      radiodiet = value;
+      switch (radiocig) {
+        case 1:
+          actdiet = radiodiet;
+          break;
+        case 2:
+          actdiet = radiodiet;
+          break;
+        case 3:
+          actdiet = radiodiet;
+          break;
+        case 4:
+          actdiet = radiodiet;
+          break;
+        case 5:
+          actdiet = radiodiet;
+          break;
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: appbar,
+        title: Text("Medical Information"),
+      ),
+      body: Container(
+        height: height,
+        width: width,
+        padding: EdgeInsets.all(15.0),
+        child: Stack(
+          children: <Widget>[
+            ListView(
+              children: <Widget>[
+//excersices
+                TextFormField(
+                  style: new TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.0,
+                  ),
+                  decoration: InputDecoration(
+                      contentPadding: EdgeInsets.all(5.0),
+                      labelText: "If you have any health problems list them",
+                      labelStyle: new TextStyle(
+                        color: Colors.black,
+                        fontSize: 20.0,
+                      )),
+                ),
+                SizedBox(
+                  height: 30.0,
+                ),
+
+//excersices
+                TextFormField(
+                  style: new TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.0,
+                  ),
+                  decoration: InputDecoration(
+                      contentPadding: EdgeInsets.all(5.0),
+                      labelText:
+                          "If you are on any medications, please list them",
+                      labelStyle: new TextStyle(
+                        color: Colors.black,
+                        fontSize: 20.0,
+                      )),
+                ),
+                SizedBox(
+                  height: 30.0,
+                ),
+
+//excersices
+                TextFormField(
+                  style: new TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.0,
+                  ),
+                  decoration: InputDecoration(
+                      contentPadding: EdgeInsets.all(5.0),
+                      labelText: "If Undergone any therapies, List them",
+                      labelStyle: new TextStyle(
+                        color: Colors.black,
+                        fontSize: 20.0,
+                      )),
+                ),
+                SizedBox(
+                  height: 30.0,
+                ),
+
+//excersices
+                TextFormField(
+                  style: new TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.0,
+                  ),
+                  decoration: InputDecoration(
+                      contentPadding: EdgeInsets.all(5.0),
+                      labelText: "Any Injuries, List them",
+                      labelStyle: new TextStyle(
+                        color: Colors.black,
+                        fontSize: 20.0,
+                      )),
+                ),
+                SizedBox(
+                  height: 30.0,
+                ),
+
+                texter("Are you experiencing any stresses problem"),
+                Row(
+                  children: <Widget>[
+                    stress(1, "Yes", radiovalue, changeid),
+                    stress(2, "No", radiovalue, changeid)
+                  ],
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                texter("Do you suffer from any diseases?"),
+                Row(
+                  children: <Widget>[
+                    stress(1, "Yes", radiodisease, changeiddisease),
+                    stress(2, "No", radiodisease, changeiddisease)
+                  ],
+                ),
+
+//excersices
+                radiodisease == 1
+                    ? TextFormField(
+                        style: new TextStyle(
+                          color: Colors.black,
+                          fontSize: 18.0,
+                        ),
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.all(5.0),
+                            labelText: "List the diseases:",
+                            labelStyle: new TextStyle(
+                              color: Colors.black,
+                              fontSize: 20.0,
+                            )),
+                      )
+                    : SizedBox(),
+                SizedBox(
+                  height: 10.0,
+                ),
+
+                texter("Are you a current cigarette smoker?"),
+                Row(
+                  children: <Widget>[
+                    stress(1, "Yes", radiocig, changeCig),
+                    stress(2, "No", radiocig, changeCig)
+                  ],
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+
+                texter("Your current diet could be best characterized as:"),
+                Column(
+                  children: <Widget>[
+                    stress(1, "low-fat", radiodiet, changeDiet),
+                    stress(2, "low-carb", radiodiet, changeDiet),
+                    stress(3, "high-protein", radiodiet, changeDiet),
+                    stress(4, "Vegetarian/Vegan", radiodiet, changeDiet),
+                    stress(5, "No special diet", radiodiet, changeDiet)
+                  ],
+                ),
+                SizedBox(
+                height: 60.0,
+                )
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                RaisedButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                  padding: EdgeInsets.all(8.0),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Goals()));
+                  },
+                  color: appbar,
+                  child: Text(
+                    "Next",
+                    style: TextStyle(color: Colors.white, fontSize: 20.0),
+                  ),
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget stress(int no, String text, int groupvalue, void changer(int value)) {
+    return Row(
+      children: <Widget>[
+        Radio(value: no, groupValue: groupvalue, onChanged: changer),
+        texter(text)
+      ],
+    );
+  }
+}
