@@ -9,6 +9,13 @@ Widget texter(String text) {
   );
 }
 
+Widget texte(String text) {
+  return Text(
+    text,
+    style: TextStyle(fontSize: 16.0),
+  );
+}
+
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,

@@ -1,7 +1,7 @@
 import 'package:fitness_training/Listyle.dart';
+import 'package:fitness_training/list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'main.dart';
 import 'main.dart';
 
 class BasicInformation extends StatefulWidget {
@@ -41,11 +41,11 @@ class _BasicInformationState extends State<BasicInformation> {
           padding: EdgeInsets.all(20.0),
           child: Stack(
             children: <Widget>[
-
               ListView(
                 children: <Widget>[
 //full name
                   TextFormField(
+                    controller: name,
                     style: new TextStyle(
                       color: Colors.black,
                       fontSize: 18.0,
@@ -85,7 +85,7 @@ class _BasicInformationState extends State<BasicInformation> {
                       texter("Female"),
                     ],
                   ),
-                  SizedBox(
+                  Divider(
                     height: 10.0,
                   ),
 
@@ -120,6 +120,7 @@ class _BasicInformationState extends State<BasicInformation> {
 
 //Age
                   TextFormField(
+                    controller: age,
                     keyboardType: TextInputType.number,
                     style: new TextStyle(
                       color: Colors.black,
@@ -139,6 +140,7 @@ class _BasicInformationState extends State<BasicInformation> {
 
 //height
                   TextFormField(
+                    controller: heights,
                     keyboardType: TextInputType.number,
                     style: new TextStyle(
                       color: Colors.black,
@@ -158,6 +160,7 @@ class _BasicInformationState extends State<BasicInformation> {
 
 //width
                   TextFormField(
+                    controller: weight,
                     keyboardType: TextInputType.number,
                     style: new TextStyle(
                       color: Colors.black,
@@ -172,7 +175,7 @@ class _BasicInformationState extends State<BasicInformation> {
                         )),
                   ),
                   SizedBox(
-                   height: 60.0,
+                    height: 60.0,
                   ),
                 ],
               ),
@@ -185,8 +188,24 @@ class _BasicInformationState extends State<BasicInformation> {
                         borderRadius: BorderRadius.circular(10.0)),
                     padding: EdgeInsets.all(8.0),
                     onPressed: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Lifestyle()));
+                      if (name.text.isEmpty ||
+                          dob.text.isEmpty ||
+                          age.text.isEmpty ||
+                          heights.text.isEmpty ||
+                          weight.text.isEmpty) {
+                      } else {
+                        basicInformation.insert(0, {
+                          "Name": name.text,
+                          "Gender": radiovalue.toString(),
+                          "DOB": dob.text,
+                          "Age": age.text,
+                          "Height": heights.text,
+                          "Weight": weight.text
+                        });
+                        print(basicInformation);
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Lifestyle()));
+                      }
                     },
                     color: appbar,
                     child: Text(
@@ -201,5 +220,9 @@ class _BasicInformationState extends State<BasicInformation> {
     );
   }
 
+  final name = TextEditingController();
   final dob = TextEditingController();
+  final age = TextEditingController();
+  final heights = TextEditingController();
+  final weight = TextEditingController();
 }

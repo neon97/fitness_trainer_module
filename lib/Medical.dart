@@ -1,4 +1,5 @@
 import 'package:fitness_training/goals.dart';
+import 'package:fitness_training/list.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 
@@ -65,7 +66,7 @@ class _MedicalState extends State<Medical> {
   void changeDiet(int value) {
     setState(() {
       radiodiet = value;
-      switch (radiocig) {
+      switch (radiodiet) {
         case 1:
           actdiet = radiodiet;
           break;
@@ -102,8 +103,9 @@ class _MedicalState extends State<Medical> {
           children: <Widget>[
             ListView(
               children: <Widget>[
-//excersices
+//health problems
                 TextFormField(
+                  controller: health,
                   style: new TextStyle(
                     color: Colors.black,
                     fontSize: 18.0,
@@ -120,8 +122,9 @@ class _MedicalState extends State<Medical> {
                   height: 30.0,
                 ),
 
-//excersices
+//medications
                 TextFormField(
+                  controller: medications,
                   style: new TextStyle(
                     color: Colors.black,
                     fontSize: 18.0,
@@ -139,8 +142,9 @@ class _MedicalState extends State<Medical> {
                   height: 30.0,
                 ),
 
-//excersices
+//therapies
                 TextFormField(
+                  controller: therapies,
                   style: new TextStyle(
                     color: Colors.black,
                     fontSize: 18.0,
@@ -157,8 +161,9 @@ class _MedicalState extends State<Medical> {
                   height: 30.0,
                 ),
 
-//excersices
+//injuries
                 TextFormField(
+                  controller: injuries,
                   style: new TextStyle(
                     color: Colors.black,
                     fontSize: 18.0,
@@ -175,6 +180,7 @@ class _MedicalState extends State<Medical> {
                   height: 30.0,
                 ),
 
+//stress
                 texter("Are you experiencing any stresses problem"),
                 Row(
                   children: <Widget>[
@@ -182,9 +188,11 @@ class _MedicalState extends State<Medical> {
                     stress(2, "No", radiovalue, changeid)
                   ],
                 ),
-                SizedBox(
+                Divider(
                   height: 10.0,
                 ),
+
+//disease
                 texter("Do you suffer from any diseases?"),
                 Row(
                   children: <Widget>[
@@ -192,8 +200,11 @@ class _MedicalState extends State<Medical> {
                     stress(2, "No", radiodisease, changeiddisease)
                   ],
                 ),
+                Divider(
+                  height: 10.0,
+                ),
 
-//excersices
+//disease yes
                 radiodisease == 1
                     ? TextFormField(
                         style: new TextStyle(
@@ -209,10 +220,11 @@ class _MedicalState extends State<Medical> {
                             )),
                       )
                     : SizedBox(),
-                SizedBox(
+                Divider(
                   height: 10.0,
                 ),
 
+//smoker
                 texter("Are you a current cigarette smoker?"),
                 Row(
                   children: <Widget>[
@@ -220,10 +232,11 @@ class _MedicalState extends State<Medical> {
                     stress(2, "No", radiocig, changeCig)
                   ],
                 ),
-                SizedBox(
+                Divider(
                   height: 10.0,
                 ),
 
+//diet
                 texter("Your current diet could be best characterized as:"),
                 Column(
                   children: <Widget>[
@@ -235,7 +248,7 @@ class _MedicalState extends State<Medical> {
                   ],
                 ),
                 SizedBox(
-                height: 60.0,
+                  height: 60.0,
                 )
               ],
             ),
@@ -248,8 +261,25 @@ class _MedicalState extends State<Medical> {
                       borderRadius: BorderRadius.circular(10.0)),
                   padding: EdgeInsets.all(8.0),
                   onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => Goals()));
+                    if (health.text.isEmpty ||
+                        medications.text.isEmpty ||
+                        therapies.text.isEmpty ||
+                        injuries.text.isEmpty) {
+                    } else {
+                      medicalInformation.insert(0, {
+                        "Health": health.text,
+                        "Medication": medications.text,
+                        "Therapies": therapies.text,
+                        "Injuries": injuries.text,
+                        "Stress": radiovalue.toString(),
+                        "Disease": radiodisease.toString(),
+                        "Smoker": radiocig.toString(),
+                        "Diet": radiodiet.toString()
+                      });
+                      print(medicalInformation);
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => Goals()));
+                    }
                   },
                   color: appbar,
                   child: Text(
@@ -273,4 +303,9 @@ class _MedicalState extends State<Medical> {
       ],
     );
   }
+
+  final health = TextEditingController();
+  final medications = TextEditingController();
+  final therapies = TextEditingController();
+  final injuries = TextEditingController();
 }

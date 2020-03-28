@@ -1,4 +1,5 @@
 import 'package:fitness_training/Medical.dart';
+import 'package:fitness_training/list.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 
@@ -70,6 +71,7 @@ class _LifestyleState extends State<Lifestyle> {
               children: <Widget>[
 //living
                 TextFormField(
+                  controller: living,
                   style: new TextStyle(
                     color: Colors.black,
                     fontSize: 18.0,
@@ -95,11 +97,12 @@ class _LifestyleState extends State<Lifestyle> {
                     activity(3, "High (heavy labor, very active)"),
                   ],
                 ),
-                SizedBox(
+                Divider(
                   height: 10.0,
                 ),
 //work time
                 TextFormField(
+                  controller: worktime,
                   style: new TextStyle(
                     color: Colors.black,
                     fontSize: 18.0,
@@ -126,12 +129,13 @@ class _LifestyleState extends State<Lifestyle> {
                     travel(4, "Weekly"),
                   ],
                 ),
-                SizedBox(
+                Divider(
                   height: 10.0,
                 ),
 
-//excersices
+//gym
                 TextFormField(
+                  controller: gym,
                   style: new TextStyle(
                     color: Colors.black,
                     fontSize: 18.0,
@@ -158,8 +162,21 @@ class _LifestyleState extends State<Lifestyle> {
                       borderRadius: BorderRadius.circular(10.0)),
                   padding: EdgeInsets.all(8.0),
                   onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => Medical()));
+                    if (worktime.text.isEmpty ||
+                        living.text.isEmpty ||
+                        gym.text.isEmpty) {
+                    } else {
+                      lifestyleInformation.insert(0, {
+                        "Living": living.text,
+                        "Activity": radiovalue.toString(),
+                        "WorkTime": worktime.text,
+                        "Travel": radiotravel.toString(),
+                        "Gym": gym.text
+                      });
+                      print(lifestyleInformation);
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => Medical()));
+                    }
                   },
                   color: appbar,
                   child: Text(
@@ -183,6 +200,7 @@ class _LifestyleState extends State<Lifestyle> {
       ],
     );
   }
+  
 
   Widget travel(int no, String text) {
     return Row(
@@ -192,4 +210,8 @@ class _LifestyleState extends State<Lifestyle> {
       ],
     );
   }
+
+  final worktime = TextEditingController();
+  final living = TextEditingController();
+  final gym = TextEditingController();
 }
