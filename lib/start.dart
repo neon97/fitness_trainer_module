@@ -1,9 +1,5 @@
 import 'package:fitness_training/BasicInformation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-
-import 'main.dart';
-import 'main.dart';
 import 'main.dart';
 
 class Start extends StatefulWidget {

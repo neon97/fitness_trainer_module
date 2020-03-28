@@ -6,6 +6,7 @@ Widget texter(String text) {
   return Text(
     text,
     style: TextStyle(fontSize: 20.0),
+    overflow: TextOverflow.ellipsis,
   );
 }
 
@@ -13,6 +14,7 @@ Widget texte(String text) {
   return Text(
     text,
     style: TextStyle(fontSize: 16.0),
+    overflow: TextOverflow.ellipsis,
   );
 }
 

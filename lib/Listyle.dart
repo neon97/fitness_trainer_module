@@ -93,7 +93,7 @@ class _LifestyleState extends State<Lifestyle> {
                 Column(
                   children: <Widget>[
                     activity(1, "none (Seated only)"),
-                    activity(2, "Moderate (light activity such as walking)"),
+                    activity(2, "Moderate (light activity)"),
                     activity(3, "High (heavy labor, very active)"),
                   ],
                 ),
@@ -195,7 +195,7 @@ class _LifestyleState extends State<Lifestyle> {
   Widget activity(int no, String text) {
     return Row(
       children: <Widget>[
-        Radio(value: no, groupValue: radiovalue, onChanged: changeid),
+        Radio(value: no, groupValue: radiovalue, onChanged: changeid,activeColor: appbar,),
         texter(text)
       ],
     );
@@ -205,7 +205,7 @@ class _LifestyleState extends State<Lifestyle> {
   Widget travel(int no, String text) {
     return Row(
       children: <Widget>[
-        Radio(value: no, groupValue: radiotravel, onChanged: changeTravelid),
+        Radio(value: no, groupValue: radiotravel, onChanged: changeTravelid,activeColor: appbar,),
         texter(text)
       ],
     );

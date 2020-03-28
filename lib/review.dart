@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:fitness_training/list.dart';
 import 'package:fitness_training/main.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +40,7 @@ class _ReviewState extends State<Review> {
               textAlign: TextAlign.center,
             ),
             Text(
-              "Thank You,\nMr.Vishwakarma Raj\nFor applying to the Gym !",
+              "Thank You,\nMr. ${basicInformation[0]["Name"].toString()}\nFor applying to the Gym !",
               style: TextStyle(fontSize: 20.0),
               textAlign: TextAlign.center,
             ),

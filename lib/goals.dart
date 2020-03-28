@@ -234,7 +234,7 @@ class _GoalsState extends State<Goals> {
   Widget stress(int no, String text, int groupvalue, void changer(int value)) {
     return Row(
       children: <Widget>[
-        Radio(value: no, groupValue: groupvalue, onChanged: changer),
+        Radio(value: no, groupValue: groupvalue, onChanged: changer,activeColor: appbar,),
         texter(text)
       ],
     );
