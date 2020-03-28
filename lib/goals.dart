@@ -204,6 +204,30 @@ class _GoalsState extends State<Goals> {
                   padding: EdgeInsets.all(8.0),
                   onPressed: () {
                     if (goalTrainig.text.isEmpty || expectations.text.isEmpty) {
+                      showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            child: new AlertDialog(
+                              backgroundColor: appbar,
+                              content: new Text(
+                                "You have left fields Empty !!",
+                                style: new TextStyle(
+                                    fontSize: 20.0, color: Colors.white),
+                              ),
+                              actions: <Widget>[
+                                new FlatButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(true);
+                                    },
+                                    child: new Text(
+                                      "OK",
+                                      style: new TextStyle(
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ))
+                              ],
+                            ));
                     } else {
                       goals.insert(0, {
                         "Rate": radiovalue.toString(),

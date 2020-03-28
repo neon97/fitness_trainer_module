@@ -83,7 +83,30 @@ class _GuidelinessState extends State<Guideliness> {
               padding: EdgeInsets.all(8.0),
               onPressed: () {
                 radiovalue == 1?Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => Review())):print("");
+                    MaterialPageRoute(builder: (context) => Review())):showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            child: new AlertDialog(
+                              backgroundColor: appbar,
+                              content: new Text(
+                                "Please Select Yes to Continue !!",
+                                style: new TextStyle(
+                                    fontSize: 20.0, color: Colors.white),
+                              ),
+                              actions: <Widget>[
+                                new FlatButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(true);
+                                    },
+                                    child: new Text(
+                                      "OK",
+                                      style: new TextStyle(
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ))
+                              ],
+                            ));
               },
               color: appbar,
               child: Text(

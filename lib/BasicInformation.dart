@@ -193,6 +193,30 @@ class _BasicInformationState extends State<BasicInformation> {
                           age.text.isEmpty ||
                           heights.text.isEmpty ||
                           weight.text.isEmpty) {
+                        showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            child: new AlertDialog(
+                              backgroundColor: appbar,
+                              content: new Text(
+                                "You have left fields Empty !!",
+                                style: new TextStyle(
+                                    fontSize: 20.0, color: Colors.white),
+                              ),
+                              actions: <Widget>[
+                                new FlatButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(true);
+                                    },
+                                    child: new Text(
+                                      "OK",
+                                      style: new TextStyle(
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ))
+                              ],
+                            ));
                       } else {
                         basicInformation.insert(0, {
                           "Name": name.text,
